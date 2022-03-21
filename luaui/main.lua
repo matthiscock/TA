@@ -11,6 +11,9 @@
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
+VFS.Include(LUAUI_DIRNAME .. 'trace.lua', nil, VFS.ZIP)
+VFS.Include('luashared/glal.lua', nil, VFS.ZIP)
+
 Spring.SendCommands({"ctrlpanel " .. LUAUI_DIRNAME .. "ctrlpanel.txt"})
 
 VFS.Include(LUAUI_DIRNAME .. 'utils.lua', utilFile)
@@ -19,7 +22,8 @@ include("setupdefs.lua")
 include("savetable.lua")
 
 include("debug.lua")
-include("fonts.lua")
+VFS.Include(LUAUI_DIRNAME .. 'fonts.lua', nil, VFS.ZIP)
+
 include("layout.lua")   -- contains a simple LayoutButtons()
 -- include("bawidgets.lua")  -- the widget handler
 VFS.Include(LUAUI_DIRNAME .. 'widgets.lua', nil, VFS.ZIP)

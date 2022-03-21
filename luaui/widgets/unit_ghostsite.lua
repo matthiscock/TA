@@ -151,10 +151,12 @@ function DrawGhostFeatures()
 	glTexture(0,"$units1")
 	--glTexture(1,"$units1")
 
-	glTexEnv( GL.TEXTURE_ENV, GL.TEXTURE_ENV_MODE, 34160 )				--GL_COMBINE_RGB_ARB
-	--use the alpha given by glColor for the outgoing alpha.
-	glTexEnv( GL.TEXTURE_ENV, 34162, GL.REPLACE )			--GL_COMBINE_ALPHA
-	glTexEnv( GL.TEXTURE_ENV, 34184, 34167 )			--GL_SOURCE0_ALPHA_ARB			GL_PRIMARY_COLOR_ARB
+	if glTextEnv ~= nil then
+		glTexEnv( GL.TEXTURE_ENV, GL.TEXTURE_ENV_MODE, 34160 )				--GL_COMBINE_RGB_ARB
+		--use the alpha given by glColor for the outgoing alpha.
+		glTexEnv( GL.TEXTURE_ENV, 34162, GL.REPLACE )			--GL_COMBINE_ALPHA
+		glTexEnv( GL.TEXTURE_ENV, 34184, 34167 )			--GL_SOURCE0_ALPHA_ARB			GL_PRIMARY_COLOR_ARB
+	end
 	
 	--------------------------Draw-------------------------------------------------------------
 	for unitID, ghost in pairs( ghostFeatures ) do
@@ -178,10 +180,12 @@ function DrawGhostFeatures()
 	end
 
 	--------------------------Clean up-------------------------------------------------------------
-	glTexEnv( GL.TEXTURE_ENV, GL.TEXTURE_ENV_MODE, 8448 )				--GL_MODULATE
-	--use the alpha given by glColor for the outgoing alpha.
-	glTexEnv( GL.TEXTURE_ENV, 34162, 8448 )											--GL_MODULATE
-	----gl.TexEnv( GL.TEXTURE_ENV, 34184, 5890 )			--GL_SOURCE0_ALPHA_ARB			GL_TEXTURE
+	if glTextEnv ~= nil then
+		glTexEnv( GL.TEXTURE_ENV, GL.TEXTURE_ENV_MODE, 8448 )				--GL_MODULATE
+		--use the alpha given by glColor for the outgoing alpha.
+		glTexEnv( GL.TEXTURE_ENV, 34162, 8448 )											--GL_MODULATE
+		----gl.TexEnv( GL.TEXTURE_ENV, 34184, 5890 )			--GL_SOURCE0_ALPHA_ARB			GL_TEXTURE
+	end
 end
 
 function DrawGhostSites()
@@ -307,7 +311,7 @@ end
 
 --Commons
 function ResetGl() 
-	glColor( { 1.0, 1.0, 1.0, 1.0 } )
+	glColor(1.0, 1.0, 1.0, 1.0)
 	glLineWidth( 1.0 )
 	glDepthTest(false)
 	glTexture(false)

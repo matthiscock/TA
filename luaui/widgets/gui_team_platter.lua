@@ -277,12 +277,12 @@ function widget:DrawWorldPreUnit()
             local x, y, z = spGetUnitBasePosition(unitID)
             local gx, gy, gz = spGetGroundNormal(x, z)
             local degrot = acos(gy) * 180 / pi
-            glColor(colorSet)
+            glColor(unpack(colorSet))
             glDrawListAtUnit(unitID, circlePolys, false,
                              radius, 1.0, radius,
                              degrot, gz, 0, -gx)
           else
-            glColor(colorSet)
+            glColor(unpack(colorSet))
             glDrawListAtUnit(unitID, circlePolys, false,
                              radius, 1.0, radius)
          end

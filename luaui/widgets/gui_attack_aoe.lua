@@ -74,8 +74,6 @@ local GAME_SPEED             = 30
 local SLOW_UPDATE            = 15
 local g_f                    = g / GAME_SPEED / GAME_SPEED
 local glBeginEnd             = gl.BeginEnd
-local glCallList             = gl.CallList
-local glCreateList           = gl.CreateList
 local glColor                = gl.Color
 local glDeleteList           = gl.DeleteList
 local glDepthTest            = gl.DepthTest
@@ -163,7 +161,7 @@ local function DrawCircle(x, y, z, radius)
   glTranslate(x, y, z)
   glScale(radius, radius, radius)
 
-  glCallList(circleList)
+  gl.CallList(circleList)
 
   glPopMatrix()
 end
@@ -260,11 +258,11 @@ local function SetupUnitDef(unitDefID, unitDef)
 end
 
 local function SetupDisplayLists()
-  circleList = glCreateList(DrawUnitCircle)
+  circleList = gl.CreateList(DrawUnitCircle)
 end
 
 local function DeleteDisplayLists()
-  glDeleteList(circleList)
+  gl.DeleteList(circleList)
 end
 
 --------------------------------------------------------------------------------
@@ -483,7 +481,7 @@ local function DrawBallisticScatter(scatter, v, fx, fy, fz, tx, ty, tz, trajecto
 
   glLineWidth(scatterLineWidthMult / mouseDistance)
   glPointSize(pointSizeMult / mouseDistance)
-  glColor(scatterColor)
+  glColor(unpack(scatterColor))
   glDepthTest(false)
   glBeginEnd(GL_LINES, VertexList, bars)
   glBeginEnd(GL_POINTS, VertexList, vertices)
@@ -503,7 +501,7 @@ local function DrawWobbleScatter(scatter, fx, fy, fz, tx, ty, tz, rangeScatter, 
 
   local bx, by, bz, d = Normalize(dx, dy, dz)
 
-  glColor(scatterColor)
+  glColor(unpack(scatterColor))
   glLineWidth(scatterLineWidthMult / mouseDistance)
   if d and range then
     if d <= range then
@@ -539,7 +537,7 @@ local function DrawDirectScatter(scatter, fx, fy, fz, tx, ty, tz, range, unitRad
   local vertices = {{fx + ux + cx, fy, fz + uz + cz}, {tx + wx, ty, tz + wz},
                     {fx + ux - cx, fy, fz + uz - cz}, {tx - wx, ty, tz - wz}}
 
-  glColor(scatterColor)
+  glColor(unpack(scatterColor))
   glLineWidth(scatterLineWidthMult / mouseDistance)
   glBeginEnd(GL_LINES, VertexList, vertices)
   glColor(1,1,1,1)
@@ -581,7 +579,7 @@ end
 --orbital
 --------------------------------------------------------------------------------
 local function DrawOrbitalScatter(scatter, tx, ty, tz)
-  glColor(scatterColor)
+  glColor(unpack(scatterColor))
   glLineWidth(scatterLineWidthMult / mouseDistance)
   DrawCircle(tx, ty, tz, scatter)
   glColor(1,1,1,1)

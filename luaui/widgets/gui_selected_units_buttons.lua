@@ -368,7 +368,7 @@ function DrawUnitDefTexture(unitDefID, iconPos, count, row)
   local ymid = (ymin + ymax) * 0.5
 
   local ud = UnitDefs[unitDefID]
-  glColor(color)
+  glColor(unpack(color))
   if WG['OtaIcons'] and OtaIconExist[unitDefID] then
 	gl.Texture(OtaIconExist[unitDefID])
   else
@@ -426,7 +426,7 @@ function DrawIconQuad(iconPos, color)
   local ymid = (ymin + ymax) * 0.5
 
   gl.Texture(highlightImg)
-  gl.Color(color)
+  gl.Color(unpack(color))
   glTexRect(xmin+iconMargin, ymin+iconMargin+iconMargin, xmax-iconMargin, ymax-iconMargin)
   gl.Texture(false)
   

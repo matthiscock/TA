@@ -214,7 +214,7 @@ function DrawTextarea(x,y,width,height,scrollbar)
 			scrollbarPos             = scrollbarPos + ((startLine-1) / totalChangelogLines) * scrollbarPosHeight	-- correct position taking position bar height into account
 
 			-- background
-			gl.Color(scrollbarBackgroundColor)
+			gl.Color(unpack(scrollbarBackgroundColor))
 			RectRound(
 				x+width-scrollbarMargin-scrollbarWidth,
 				scrollbarBottom-(scrollbarWidth-scrollbarPosWidth),
@@ -223,7 +223,7 @@ function DrawTextarea(x,y,width,height,scrollbar)
 				scrollbarWidth/2
 			)
 			-- bar
-			gl.Color(scrollbarBarColor)
+			gl.Color(unpack(scrollbarBarColor))
 			RectRound(
 				x+width-scrollbarMargin-scrollbarWidth + (scrollbarWidth - scrollbarPosWidth),
 				scrollbarPos,

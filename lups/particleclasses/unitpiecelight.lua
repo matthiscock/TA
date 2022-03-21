@@ -126,7 +126,7 @@ function UnitPieceLight:EndDraw()
 end
 
 function UnitPieceLight:Draw()
-  gl.Color(self.color)
+  gl.Color(unpack(self.color))
   gl.RenderToTexture(offscreentex, function()
      gl.PushMatrix()
      gl.ResetMatrices()

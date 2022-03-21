@@ -1516,7 +1516,7 @@ local function SetTeamColor(teamID,a)
   local color = teamColors[teamID]
   if (color) then
     color[4]=a
-    glColor(color)
+    glColor(unpack(color))
     return
   end
   local r, g, b = Spring.GetTeamColor(teamID)
@@ -1530,7 +1530,7 @@ local function SetTeamColor(teamID,a)
     end
     color = { r, g, b }
     teamColors[teamID] = color
-    glColor(color)
+    glColor(unpack(color))
     return
   end
 end

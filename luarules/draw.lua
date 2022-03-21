@@ -6,4 +6,5 @@ if (select == nil) then
   end
 end
 
+VFS.Include('luashared/glal.lua', nil, VFS.ZIP)
 VFS.Include(Script.GetName() .. '/gadgets.lua', nil, VFS.ZIP_ONLY)

@@ -231,10 +231,10 @@ function widget:Initialize()
           gl.Vertex(-barWidth,barHeight,barWidth*2,0);
           gl.Vertex(-barWidth,barHeight,0,0);
 
-          gl.Color(bkBottom);
+          gl.Color(unpack(bkBottom));
           gl.Vertex(barWidth,0,        0,         1);
           gl.Vertex(barWidth,0,        barWidth*2,1);
-          gl.Color(bkTop);
+          gl.Color(unpack(bkTop));
           gl.Vertex(barWidth,barHeight,barWidth*2,1);
           gl.Vertex(barWidth,barHeight,0,         1);
         end)
@@ -247,10 +247,10 @@ function widget:Initialize()
           gl.Vertex(-featureBarWidth,featureBarHeight,featureBarWidth*2,0);
           gl.Vertex(-featureBarWidth,featureBarHeight,0,0);
 
-          gl.Color(fbkBottom);
+          gl.Color(unpack(fbkBottom));
           gl.Vertex(featureBarWidth,0,               0,         1);
           gl.Vertex(featureBarWidth,0,               featureBarWidth*2,1);
-          gl.Color(fbkTop);
+          gl.Color(unpack(fbkTop));
           gl.Vertex(featureBarWidth,featureBarHeight,featureBarWidth*2,1);
           gl.Vertex(featureBarWidth,featureBarHeight,0,         1);
         end)
@@ -280,8 +280,8 @@ function widget:Shutdown()
     gl.DeleteShader(barShader)
   end
   if (barDList) then
-    gl.DeleteList(barDList)
-    gl.DeleteList(barFeatureDList)
+    gl.DeleteList(barDList or 0)
+    gl.DeleteList(barFeatureDList or 0)
   end
 end
 
@@ -326,14 +326,13 @@ do
   local glMultiTexCoord = gl.MultiTexCoord
   local glTexRect       = gl.TexRect
   local glTexture       = gl.Texture
-  local glCallList      = gl.CallList
   local glText          = gl.Text
 
   local function DrawGradient(left,top,right,bottom,topclr,bottomclr)
-    glColor(bottomclr)
+    glColor(unpack(bottomclr))
     glVertex(left,bottom)
     glVertex(right,bottom)
-    glColor(topclr)
+    glColor(unpack(topclr))
     glVertex(right,top)
     glVertex(left,top)
   end
@@ -343,7 +342,7 @@ do
     if (barShader) then
       glMultiTexCoord(1,color)
       glMultiTexCoord(2,percent,offsetY)
-      glCallList(barDList)
+      gl.CallList(barDList)
       return;
     end
 
@@ -358,7 +357,7 @@ do
     if (barShader) then
       glMultiTexCoord(1,color)
       glMultiTexCoord(2,percent,offsetY)
-      glCallList(barFeatureDList)
+      gl.CallList(barFeatureDList)
       return;
     end
 

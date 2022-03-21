@@ -229,7 +229,7 @@ local function DrawBuilding(buildData, borderColor, buildingAlpha, drawRanges)
 	local bDefID, bx, by, bz, facing = buildData[1], buildData[2], buildData[3], buildData[4], buildData[5]
 	local bw, bh = GetBuildingDimensions(bDefID, facing)
 	gl.DepthTest(false)
-	gl.Color(borderColor)
+	gl.Color(unpack(borderColor))
 
 	gl.Shape(GL.LINE_LOOP, {
 		{
@@ -548,9 +548,9 @@ function widget:DrawScreen()
 	-- background
 	local bgheight = ((#cellRows * iconHeight) + margin)
 	local bgwidth = ((maxCols * iconWidth) + margin)
-	gl.Color(WG["background_opacity_custom"])
+	gl.Color(unpack(WG["background_opacity_custom"]))
 	RectRound(-(margin), -bgheight, bgwidth, margin, ((iconWidth + iconPadding + iconPadding) / 7))
-	gl.Color(borderColor)
+	gl.Color(unpack(borderColor))
 	RectRound(-(margin) + borderPadding, -bgheight + borderPadding, bgwidth - borderPadding, margin - borderPadding, ((iconWidth + iconPadding + iconPadding) / 9))
 
 	for r = 1, #cellRows do
@@ -598,7 +598,7 @@ function widget:DrawScreen()
 	if TraceDefID(CurMouseState[1], CurMouseState[2]) then
 		gl.Translate(-((iconWidth * widgetScale) * col), -((iconHeight * widgetScale) * row), 0)
 		gl.Texture(buttonhighlight)
-		gl.Color(hoverColor)
+		gl.Color(unpack(hoverColor))
 		DrawRect(iconPadding * widgetScale, iconPadding * widgetScale, iconWidth - iconPadding * widgetScale, iconHeight - iconPadding * widgetScale)
 		gl.Color(hoverColor[1], hoverColor[2], hoverColor[3], hoverColor[4] / 1.5)
 		glBlending(GL_SRC_ALPHA, GL_ONE)
@@ -606,7 +606,7 @@ function widget:DrawScreen()
 		glBlending(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 
 		if CurMouseState[3] then
-			gl.Color(clickColor)
+			gl.Color(unpack(clickColor))
 			DrawRect(iconPadding * widgetScale, iconPadding * widgetScale, (iconWidth - iconPadding) * widgetScale, (iconHeight - iconPadding) * widgetScale)
 			gl.Color(clickColor[1], clickColor[2], clickColor[3], clickColor[4] / 1.5)
 			glBlending(GL_SRC_ALPHA, GL_ONE)
@@ -646,7 +646,7 @@ function widget:DrawScreen()
 		local row, col = lastClickedRow, lastClickedCol
 		gl.Translate(-((iconWidth * widgetScale) * col), -((iconHeight * widgetScale) * row), 0)
 		gl.Texture(buttonpushed)
-		gl.Color(pushedColor)
+		gl.Color(unpack(pushedColor))
 		DrawRect((iconPadding * widgetScale), (iconPadding * widgetScale), ((iconWidth - iconPadding) * widgetScale), ((iconHeight - iconPadding) * widgetScale))
 		gl.Color(pushedColor[1], pushedColor[2], pushedColor[3], pushedColor[4] / 1.5)
 		glBlending(GL_SRC_ALPHA, GL_ONE)
@@ -691,7 +691,7 @@ function widget:DrawWorld()
 		-- Draw the starting unit at start position
 		sDefID = sDef.id
 		DrawUnitDef(sDefID, myTeamID, sx, sy, sz)
-		gl.Color(buildDistanceColor)
+		gl.Color(unpack(buildDistanceColor))
 		gl.DrawGroundCircle(sx, sy, sz, sDef.buildDistance, 40)
 	end
 
@@ -737,7 +737,7 @@ function widget:DrawWorld()
 	end
 
 	-- Draw queue lines
-	gl.Color(buildLinesColor)
+	gl.Color(unpack(buildLinesColor))
 	gl.LineStipple("springdefault")
 	gl.Shape(GL.LINE_STRIP, queueLineVerts)
 	gl.LineStipple(false)

@@ -123,7 +123,7 @@ function UnitCloaker:Draw()
     gl.Uniform( lifeUniform,   (thisGameFrame-self.firstGameFrame)/self.life )
   end
 
-  gl.Color(Spring.GetTeamColor(self.team))
+  gl.Color(unpack(Spring.GetTeamColor(self.team)))
 
   
   local x, y, z = Spring.GetUnitPosition(self.unit)

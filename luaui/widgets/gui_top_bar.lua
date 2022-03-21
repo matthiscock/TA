@@ -517,7 +517,7 @@ local function updateResbarValues(res)
 		end
 
 		-- Bar value
-        glColor(resbarDrawinfo[res].barColor)
+        glColor(unpack(resbarDrawinfo[res].barColor))
         glTexture(barbg)
         glTexRect(resbarDrawinfo[res].barTexRect[1], resbarDrawinfo[res].barTexRect[2], resbarDrawinfo[res].barTexRect[1]+((cappedCurRes/r[2]) * barWidth), resbarDrawinfo[res].barTexRect[4])
 
@@ -656,7 +656,7 @@ local function updateResbar(res)
 	dlistResbar[res][2] = glCreateList( function()
 		-- Metalmaker Conversion slider
 		if showConversionSlider and res == 'energy' then
-            local convValue = Spring.GetTeamRulesParam(spGetMyTeamID(), 'mmLevel')
+            local convValue = Spring.GetTeamRulesParam(spGetMyTeamID(), 'mmLevel') or 0
             if draggingConversionIndicator ~= nil and draggingConversionIndicatorValue ~= nil then
                 convValue = draggingConversionIndicatorValue/100
             end
@@ -940,7 +940,7 @@ end
 function widget:DrawScreen()
 
 	if dlistBackground then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistBackground)
 	end
 
@@ -948,7 +948,7 @@ function widget:DrawScreen()
 
 	local res = 'metal'
 	if dlistResbar[res][1] and dlistResbar[res][2] and dlistResbar[res][3] and dlistResbar[res][4] then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistResbar[res][1])
         glCallList(dlistResbar[res][3])
         glCallList(dlistResbar[res][4])
@@ -961,7 +961,7 @@ function widget:DrawScreen()
 	end
 	res = 'energy'
 	if dlistResbar[res][1] and dlistResbar[res][2] and dlistResbar[res][3] and dlistResbar[res][4] then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistResbar[res][1])
         glCallList(dlistResbar[res][3])
         glCallList(dlistResbar[res][4])
@@ -975,7 +975,7 @@ function widget:DrawScreen()
 
 
 	if dlistWind1 then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistWind1)
 		glRotate(windRotation, 0, 0, 1)
 		glCallList(dlistWind2)
@@ -986,7 +986,7 @@ function widget:DrawScreen()
 		end
 	end
 	if dlistComs1 then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistComs1)
 		if allyComs == 1 and (gameFrame % 12 < 6) then
 			glColor(1,0.6,0,0.6)
@@ -998,7 +998,7 @@ function widget:DrawScreen()
 	
 
 	if dlistRejoin and showRejoinUI then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistRejoin)
 	elseif dlistRejoin ~= nil then
 		if dlistRejoin ~= nil then
@@ -1010,7 +1010,7 @@ function widget:DrawScreen()
 	end
 
 	if dlistButtons1 then
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistButtons1)
 		-- hovered?
 		if buttonsArea['buttons'] ~= nil and IsOnRect(x, y, buttonsArea[1], buttonsArea[2], buttonsArea[3], buttonsArea[4]) then
@@ -1027,7 +1027,7 @@ function widget:DrawScreen()
 				end
 			end
 		end
-		gl.Color(WG["background_opacity_custom"])
+		gl.Color(unpack(WG["background_opacity_custom"]))
 		glCallList(dlistButtons2)
 	end
 

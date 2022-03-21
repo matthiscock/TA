@@ -236,7 +236,7 @@ end
 function widget:DrawScreen()
 	if drawlist[1] ~= nil then
 		glPushMatrix()
-			gl.Color(WG["background_opacity_custom"])
+			gl.Color(unpack(WG["background_opacity_custom"]))
 			glCallList(drawlist[1])
 			glCallList(drawlist[2])
 		glPopMatrix()

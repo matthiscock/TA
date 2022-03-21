@@ -117,10 +117,6 @@ local glGetTextHeight = gl.GetTextHeight
 
 local bgColorMultiplier = 0
 
-local glCreateList = gl.CreateList
-local glCallList = gl.CallList
-local glDeleteList = gl.DeleteList
-
 local glPopMatrix = gl.PopMatrix
 local glPushMatrix = gl.PushMatrix
 local glTranslate = gl.Translate
@@ -250,7 +246,7 @@ function DrawTextarea(x,y,width,height,scrollbar)
 			scrollbarPos             = scrollbarPos + ((startLine-1) / totalChangelogLines) * scrollbarPosHeight	-- correct position taking position bar height into account
 
 			-- background
-			gl.Color(scrollbarBackgroundColor)
+			gl.Color(unpack(scrollbarBackgroundColor))
 			RectRound(
 				x+width-scrollbarMargin-scrollbarWidth,
 				scrollbarBottom-(scrollbarWidth-scrollbarPosWidth),
@@ -259,7 +255,7 @@ function DrawTextarea(x,y,width,height,scrollbar)
 				scrollbarWidth/2
 			)
 			-- bar
-			gl.Color(scrollbarBarColor)
+			gl.Color(unpack(scrollbarBarColor))
 			RectRound(
 				x+width-scrollbarMargin-scrollbarWidth + (scrollbarWidth - scrollbarPosWidth),
 				scrollbarPos,
@@ -344,7 +340,7 @@ function DrawWindow()
 	-- title
     local title = "Game info"
 	local titleFontSize = 18
-    gl.Color(WG["background_opacity_custom"])
+    gl.Color(unpack(WG["background_opacity_custom"]))
     titleRect = {x-bgMargin, y+bgMargin, x+(glGetTextWidth(title)*titleFontSize)+27-bgMargin, y+37}
 	RectRound(titleRect[1], titleRect[2], titleRect[3], titleRect[4], 8, 1,1,0,0)
 	font:Begin()
@@ -372,8 +368,8 @@ function widget:DrawScreen()
 		glPushMatrix()
 			glTranslate(-(vsx * (widgetScale-1))/2, -(vsy * (widgetScale-1))/2, 0)
 			glScale(widgetScale, widgetScale, 1)
-		    gl.Color(WG["background_opacity_custom"])
-			glCallList(changelogList)
+		    gl.Color(unpack(WG["background_opacity_custom"]))
+			gl.CallList(changelogList)
 		glPopMatrix()
 		if (WG['guishader_api'] ~= nil) then
 			local rectX1 = ((screenX-bgMargin) * widgetScale) - ((vsx * (widgetScale-1))/2)
@@ -443,7 +439,7 @@ function widget:MouseWheel(up, value)
 		if startLine > totalChangelogLines - textareaMinLines then startLine = totalChangelogLines - textareaMinLines end
 		
 		if changelogList then
-			glDeleteList(changelogList)
+			gl.DeleteList(changelogList)
 		end
 		
 		changelogList = gl.CreateList(DrawWindow)
@@ -591,11 +587,11 @@ function widget:Shutdown()
   	widgetHandler:RemoveAction("customgameinfo", toggle)
   	
     if buttonGL then
-        glDeleteList(buttonGL)
+        gl.DeleteList(buttonGL)
         buttonGL = nil
     end
     if changelogList then
-        glDeleteList(changelogList)
+        gl.DeleteList(changelogList)
         changelogList = nil
     end
 end

@@ -811,7 +811,7 @@ function widget:DrawScreen()
 		end
 
 		-- background
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 
 		-- correct position when it goes below screen
 		if cY < 0 then
@@ -838,7 +838,7 @@ function widget:DrawScreen()
 		local text = "\255\190\255\190" .. uDef.humanName .. "   " .. grey .. uDef.name .. grey .. "   #" .. uID .. "   "..GetTeamColorCode(uTeam) .. GetTeamName(uTeam)
 		local iconHalfSize = titleFontSize*0.75
 		cornersize = 0
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 		RectRound(cX-bgpadding+cornersize, cYstart-bgpadding+cornersize, cX+(gl.GetTextWidth(text)*titleFontSize)+iconHalfSize+iconHalfSize+bgpadding+(bgpadding/1.5)-cornersize, cYstart+(titleFontSize/2)+bgpadding-cornersize, bgcornerSize)
 		cornersize = ceil(bgpadding*0.21)
 		glColor(1,1,1,0.025)
@@ -865,7 +865,7 @@ function widget:DrawScreen()
 
 		-- stats
 		cornersize = 0
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 		RectRound(floor(cX-bgpadding)+cornersize, ceil(cY+(fontSize/3)+bgpadding)+cornersize, ceil(cX+maxWidth+bgpadding)-cornersize, floor(cYstart-bgpadding)-cornersize, bgcornerSize)
 		cornersize = ceil(bgpadding*0.16)
 		glColor(1,1,1,0.025)
@@ -1123,7 +1123,7 @@ function widget:DrawScreen()
 		end
 
 		-- background
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 
 
 		-- correct position when it goes below screen
@@ -1152,7 +1152,7 @@ function widget:DrawScreen()
 		local iconHalfSize = titleFontSize*0.75
 		cornersize = 0
 
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 
 		RectRound(cX-bgpadding+cornersize, cYstart-bgpadding+cornersize, cX+(gl.GetTextWidth(text)*titleFontSize)+iconHalfSize+iconHalfSize+bgpadding+(bgpadding/1.5)-cornersize, cYstart+(titleFontSize/2)+bgpadding-cornersize, bgcornerSize)
 		cornersize = ceil(bgpadding*0.21)
@@ -1176,7 +1176,7 @@ function widget:DrawScreen()
 		glText(text, cX, cYstart, titleFontSize, "o")
 
 		-- stats
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 
 
 		cornersize = 0

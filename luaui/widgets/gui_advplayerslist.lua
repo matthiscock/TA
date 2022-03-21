@@ -1504,7 +1504,7 @@ function widget:DrawScreen()
 	end
 	
 	-- draws the background
-	gl_Color(WG["background_opacity_custom"])
+	gl_Color(unpack(WG["background_opacity_custom"]))
 	if Background then
 		gl_CallList(Background)
 	else
@@ -1943,7 +1943,7 @@ function DrawPlayer(playerID, leader, vOffset, mouseX, mouseY)
 		if m_resources.active and aliveAllyTeams[allyteam] ~= nil and player[playerID].energy ~= nil then
 			if mySpecStatus or myAllyTeamID == allyteam then
 				local e = player[playerID].energy
-				local es = player[playerID].energyStorage
+				local es = player[playerID].energyStorage or 0
 				local ei = player[playerID].energyIncome
 				local m = player[playerID].metal
 				local ms = player[playerID].metalStorage

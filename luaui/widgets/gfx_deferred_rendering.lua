@@ -20,10 +20,8 @@ end
 local glBeginEnd             = gl.BeginEnd
 local glBillboard            = gl.Billboard
 local glBlending             = gl.Blending
-local glCallList             = gl.CallList
 local glClear                = gl.Clear
 local glColor                = gl.Color
-local glCreateList           = gl.CreateList
 local glCreateShader         = gl.CreateShader
 local glCreateTexture        = gl.CreateTexture
 local glDeleteShader         = gl.DeleteShader

@@ -237,9 +237,9 @@ function widget:DrawScreen()
 	glTranslate(px, py, 0)
 
 	-- Panel
-	glColor(cbackground)
+	glColor(unpack(cbackground))
 	glRect(0, 0, sx, sy)
-	glColor(cborder)
+	glColor(unpack(cborder))
 	drawBorder(0, 0, sx, sy, 1)
 
 	-- Class box

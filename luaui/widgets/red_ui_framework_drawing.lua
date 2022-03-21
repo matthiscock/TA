@@ -68,10 +68,8 @@ local function Text(px,py,fontsize,text,options,c)
 		glColor(1,1,1,1)
 	end
 	glTranslate(px,py+fontsize,0)
-	if (options) then
-		options = options.."d" --fuck you jK
-	else
-		options = "d"
+	if not options:find("d") then
+		options = options.."d" -- FONT_DESCENDER
 	end
 	glScale(1,-1,1) --flip
 	glText(text,0,0,fontsize,options)
@@ -105,7 +103,7 @@ end
 local function Rect(px,py,sx,sy,c)
 	if (c) then
 		if c[4] == 0.54321 then
-			glColor(WG["background_opacity_custom"] or {0,0,0,5})
+			glColor(unpack(WG["background_opacity_custom"] or {0,0,0,5}))
 		else
 			glColor(c[1],c[2],c[3],c[4])
 		end

@@ -107,7 +107,6 @@ local glCallList			= gl.CallList
 local floor					= math.floor
 local min					= math.min
 local diag					= math.diag
-local GL_QUADS				= GL.QUADS
 local clock					= os.clock
 local Button				= {}
 local Panel					= {}
@@ -264,7 +263,7 @@ local function SetTeamColor(teamID,playerID,a)
         color = {r, g, b, 0.75}
     end
     teamColors[playerID] = color
-    gl.Color(color)
+    gl.Color(unpack(color))
     return
 end
 

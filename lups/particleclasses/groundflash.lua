@@ -64,7 +64,7 @@ function GroundFlash:Draw()
     gl.Texture(self.texture)
     lasttexture=self.texture
   end
-  gl.Color(self.color)
+  gl.Color(unpack(self.color))
 
   local x1,z1,x2,z2 = self.pos[1]-self.size, self.pos[3]-self.size, self.pos[1]+self.size, self.pos[3]+self.size
   gl.DrawGroundQuad(x1,z1,x2,z2,false,true)

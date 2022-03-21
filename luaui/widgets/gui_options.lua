@@ -770,7 +770,7 @@ function widget:DrawScreen()
 		glPushMatrix()
 		glTranslate(-(vsx * (widgetScale - 1)) / 2, -(vsy * (widgetScale - 1)) / 2, 0)
 		glScale(widgetScale, widgetScale, 1)
-		glColor(WG["background_opacity_custom"])
+		glColor(unpack(WG["background_opacity_custom"]))
 		glCallList(windowList)
 
 		if (WG['guishader_api'] ~= nil) then

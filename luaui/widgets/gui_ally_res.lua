@@ -215,7 +215,7 @@ local function updateStatics()
     RectRound(x1-(BAR_MARGIN/1.75), y1-BAR_MARGIN, x1+w+(BAR_MARGIN/1.75), y1+h+BAR_MARGIN, bgcornerSize)
     
     local padding = bgcornerSize*0.5
-    gl.Color(bordercolor)
+    gl.Color(unpack(bordercolor))
     RectRound(x1-(BAR_MARGIN/1.75)+padding, y1-BAR_MARGIN+padding, x1+w+(BAR_MARGIN/1.75)-padding, y1+h+BAR_MARGIN-padding, padding)
     
     local height = h - TOP_HEIGHT

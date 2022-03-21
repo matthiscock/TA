@@ -59,7 +59,7 @@ end
 
 function SphereParticle:Draw()
   gl.Texture(self.texture)
-  gl.Color(self.color)
+  gl.Color(unpack(self.color))
 
   gl.TexCoord(0, 0)
   gl.PushMatrix()
@@ -89,11 +89,11 @@ end
 -----------------------------------------------------------------------------------------------------------------
 
 function SphereParticle:Initialize()
-  SphereList = gl.CreateList(DrawSphere,0,0,0,40,25)
+  SphereList = gl.CreateList(DrawSphere, 0,0,0,40,25)
 end
 
 function SphereParticle:Finalize()
-  gl.DeleteList(SphereList)
+  gl.DeleteList(SphereList or 0)
 end
 
 -----------------------------------------------------------------------------------------------------------------

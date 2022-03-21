@@ -269,11 +269,11 @@ function widget:Shutdown()
 	firstTime = nil
 
 	if screenQuadList then
-		gl.DeleteList(screenQuadList)
+		gl.DeleteList(screenQuadList or 0)
 	end
 
 	if screenWideList then
-		gl.DeleteList(screenWideList)
+		gl.DeleteList(screenWideList or 0)
 	end
 
 
@@ -300,8 +300,8 @@ function widget:DrawScreenEffects()
 	gl.Blending(false)
 
 	if firstTime then
-		screenQuadList = gl.CreateList(gl.TexRect, -1, -1, 1, 1)
-		screenWideList = gl.CreateList(gl.TexRect, 0, vsy, vsx, 0)
+		screenQuadList = gl.CreateListgl.TexRect, -1, -1, 1, 1)
+		screenWideList = gl.CreateListgl.TexRect, 0, vsy, vsx, 0)
 		firstTime = false
 	end
 

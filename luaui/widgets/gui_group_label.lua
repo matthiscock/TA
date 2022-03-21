@@ -73,7 +73,7 @@ function widget:DrawWorld()
             glPushMatrix()
             glTranslate(ux, uy, uz)
             glBillboard()
-            glColor(textColor)
+            glColor(unpack(textColor))
             glText("" .. group, -10.0, -15.0, textSize, "cn")
             glPopMatrix()
          end

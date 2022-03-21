@@ -271,7 +271,7 @@ end
 -- DRAW FUNCTIONS
 -------------------------------------------------------------------------------
 local function DrawRect(rect, color)
-  glColor(color)
+  glColor(unpack(color))
   --glRect(rect[1],rect[2],rect[3],rect[4])
   RectRound(rect[1],rect[4],rect[3],rect[2],(rect[3]-rect[1])/9)
   glColor(1,1,1,1)
@@ -303,7 +303,7 @@ function RectRound(px,py,sx,sy,cs)
 end
 
 local function DrawLineRect(rect, color, width)
-  glColor(color)
+  glColor(unpack(color))
   glLineWidth(width or borderSize)
   glShape(GL.LINE_LOOP, {
     { v = { rect[3]+0.5 , rect[2]+0.5 } }, { v = { rect[1]+0.5 , rect[2]+0.5 } },
@@ -315,7 +315,7 @@ end
 
 local function DrawTexRect(rect, texture, color)
   if color ~= nil then
-    glColor(color)
+    glColor(unpack(color))
   else
     glColor(1,1,1,1)
   end
@@ -326,7 +326,7 @@ local function DrawTexRect(rect, texture, color)
 end
 
 local function DrawBuildProgress(left,top,right,bottom, progress, color)
-  glColor(color)
+  glColor(unpack(color))
   local xcen = (left+right)/2
   local ycen = (top+bottom)/2
 

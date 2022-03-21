@@ -36,9 +36,6 @@ local glTranslate = gl.Translate
 local glBeginText = gl.BeginText
 local glEndText = gl.EndText
 local glText = gl.Text
-local glCallList = gl.CallList
-local glCreateList = gl.CreateList
-local glDeleteList = gl.DeleteList
 
 local spGetTeamStartPosition = Spring.GetTeamStartPosition
 local spGetTeamRulesParam = Spring.GetTeamRulesParam
@@ -128,14 +125,13 @@ function widget:DrawScreen()
 	glPushMatrix()
 	glTranslate(px, py, 0)
 	--call list
-	glColor(WG["background_opacity_custom"])
+	glColor(unpack(WG["background_opacity_custom"]))
 
-	if factionChangeList then
-
-		glCallList(factionChangeList)
-	else
-		factionChangeList = glCreateList(FactionChangeList)
-	end
+	if factionChangeList == nil then
+		factionChangeList = gl.CreateList(factionChangeList)
+	end	
+	gl.CallList(factionChangeList)
+	
 	glPopMatrix()
 end
 
@@ -221,9 +217,9 @@ function widget:MousePress(mx, my, mButton)
 
 				--Remake gui
 				if factionChangeList then
-					glDeleteList(factionChangeList)
+					gl.DeleteList(factionChangeList)
 				end
-				factionChangeList = glCreateList(FactionChangeList)
+				factionChangeList = gl.CreateList(factionChangeList)
 
 				return true
 			end

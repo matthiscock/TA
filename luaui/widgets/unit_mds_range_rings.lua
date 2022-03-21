@@ -70,7 +70,7 @@ function widget:DrawWorld()
 			local ux, uy, uz = Spring.GetUnitPosition(uId)
 			if ux then
 				for _, ring in pairs(rings) do
-					gl.Color(ring.color)
+					gl.Color(unpack(ring.color))
 					gl.LineWidth(ring.lineWidth or 1)
 					gl.DrawGroundCircle(ux, uy, uz, ring.radius, ring.divs or 32)
 				end

@@ -297,7 +297,7 @@ end
 
 --Commons
 function ResetGl() 
-	glColor( { 1.0, 1.0, 1.0, 1.0 } )
+	glColor(1.0, 1.0, 1.0, 1.0)
 	glLineWidth( 1.0 )
 	glDepthTest(false)
 	glTexture(false)

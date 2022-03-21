@@ -226,7 +226,7 @@ function widget:DrawScreen()
 		glPushMatrix()
 			glTranslate(-(vsx * (widgetScale-1))/2, -(vsy * (widgetScale-1))/2, 0)
 			glScale(widgetScale, widgetScale, 1)
-			gl.Color(WG["background_opacity_custom"])
+			gl.Color(unpack(WG["background_opacity_custom"]))
 			glCallList(keybinds)
 		glPopMatrix()
 		if (WG['guishader_api'] ~= nil) then

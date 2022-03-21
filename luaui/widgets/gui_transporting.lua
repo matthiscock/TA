@@ -300,7 +300,7 @@ function DrawIconQuad(iconPos, color)
   local xmax = xmin + iconSizeX
   local ymin = rectMinY
   local ymax = rectMaxY
-  gl.Color(color)
+  gl.Color(unpack(color))
   gl.Blending(GL.SRC_ALPHA, GL.ONE)
   gl.Shape(GL.QUADS, {
     { v = { xmin, ymin } },

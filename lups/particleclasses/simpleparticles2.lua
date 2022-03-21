@@ -362,6 +362,7 @@ end
 function SimpleParticles2:CreateParticle()
   self.ncolors = #self.colormap-1
 
+  self.maxSpawnRadius = 0;
   self.dlist = glCreateList(CreateDList,self)
 
   self.frame = 0

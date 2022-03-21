@@ -124,7 +124,7 @@ function Bursts:Draw()
       local rotv = partList.rotv
       local size = partList.size
 
-      gl.Color(partList.color)
+      gl.Color(unpack(partList.color))
 
       gl.PushMatrix()
         gl.Rotate(partList.rotArc,rotv[1],rotv[2],rotv[3])

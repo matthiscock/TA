@@ -514,7 +514,7 @@ function widget:GameFrame(n,forceupdate)
 					else
 						history.killEfficiency = huge
 					end
-					history.frame = colorToChar(teamColor) .. playerName..'    '
+					history.frame = colorToChar(teamColor) .. (playerName or '')..'    '
 
 					allyVec[teamInsertCount] = history
 					totalNumLines = totalNumLines + 1

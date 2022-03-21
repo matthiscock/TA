@@ -173,7 +173,7 @@ function drawTooltip(name, x, y)
 	
 	-- draw background
 	local cornersize = 0
-	glColor(cbackground)
+	glColor(unpack(cbackground))
 	RectRound(posX-paddingW+cornersize, posY-maxHeight-paddingH+cornersize, posX+maxWidth+paddingW-cornersize, posY+paddingH-cornersize, 5*widgetScale)
 	cornersize = 1.75*widgetScale
 	glColor(0,0,0,0.28)
